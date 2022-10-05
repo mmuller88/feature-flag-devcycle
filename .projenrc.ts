@@ -1,12 +1,20 @@
 import { web } from 'projen';
+import { TrailingComma } from 'projen/lib/javascript';
+
 const project = new web.ReactTypeScriptProject({
   defaultReleaseBranch: 'main',
   name: 'feature-flag-devcycle',
   projenrcTs: true,
 
-  // deps: [],                /* Runtime dependencies of this module. */
-  // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
-  // devDeps: [],             /* Build dependencies for this module. */
-  // packageName: undefined,  /* The "name" in package.json. */
+  deps: ['@devcycle/devcycle-react-sdk'],
+
+  // eslint: true,
+  prettier: true,
+  prettierOptions: {
+    settings: {
+      singleQuote: true,
+      trailingComma: TrailingComma.ALL,
+    },
+  },
 });
 project.synth();
